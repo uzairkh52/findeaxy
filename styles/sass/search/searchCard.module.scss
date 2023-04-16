@@ -1,0 +1,84 @@
+@import "../_variables.scss";
+
+.wjcard {
+  background: $white;
+  border: solid 1px $bc1-lighter;
+  @include box-shadow(0, 0, 5px, rgba($black, 0.2));
+  position: relative;
+  @include border-radius($base-border-radius);
+  .progBarIn {
+    @include size(90px);
+    @include position(absolute, 8px 8px null null);
+    .stockText {
+      z-index: 2;
+      padding: 10px;
+      font-size: $bfsize-mb;
+      line-height: 1.4em;
+      @include position(absolute, 0 0 null null);
+      @include size(100%);
+      @include display(flex);
+      @include align-items(center);
+      @include justify-content(center);
+      text-align: center;
+      .stockText span {
+        color: $basecolor1;
+      }
+    }
+  }
+  .thumb {
+    height: 240px;
+    background: no-repeat center center;
+    background-size: cover;
+    @include border-radius($base-border-radius $base-border-radius 0 0);
+  }
+  .row_1,
+  .row_2,
+  .row_3 {
+    padding: 6px 20px;
+  }
+  .row_1 {
+    margin-bottom: 6px;
+    border-bottom: solid 1px $bc1-lightest;
+  }
+  .price {
+    color: $basecolor2;
+    font-size: $bfsize-xs;
+    font-weight: $bold;
+    @include flexWidth(80px);
+    text-align: right;
+  }
+  .sub_title {
+    font-size: $bfsize-mb;
+    line-height: 1.2em;
+    color: $bc1-light;
+  }
+  .title {
+    font-size: $bfsize-xs;
+    font-weight: $regular;
+    color: $bf-color;
+  }
+  .row_2 {
+  }
+  .row_3 {
+  }
+  .button {
+    width: 100% !important;
+    margin: 0 auto;
+  }
+  .contentfooter {
+    font-size: 12px;
+    color: $bc1-light;
+    line-height: 1.4em;
+    padding: 10px 10px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .wjcard {
+    .thumb {
+      height: 320px;
+    }
+  }
+  .WinjoyProduct {
+  }
+}

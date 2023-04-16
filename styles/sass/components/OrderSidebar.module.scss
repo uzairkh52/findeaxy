@@ -1,0 +1,62 @@
+@import "../variables";
+.OrderSidebar {
+  background: #fff;
+  border: solid 1px #ddd;
+  @include border-radius(20px);
+  overflow: hidden;
+  .userheader {
+    padding: 25px 20px;
+    background: #eeeeee;
+    .Content {
+    }
+  }
+  .SidebarNav ul {
+    text-decoration: none;
+    padding: 0px;
+    li {
+      display: block;
+      margin: 0px;
+      padding: 0;
+      &:not(:last-child) {
+        border-bottom: solid 1px #ddd;
+      }
+
+      a,
+      button {
+        display: block;
+        text-decoration: none;
+        color: $black;
+        background: none;
+        padding: 15px 20px;
+        width: 100%;
+        margin: 0;
+        text-align: left;
+        @include border-radius(0 !important);
+        &:hover {
+          background: $bc1-lightest;
+          color: $basecolor1;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 991px) {
+  .OrderSidebar {
+    .SidebarNav ul {
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      display: flex;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      overflow-x: scroll;
+      li {
+        border-right: solid 1px #ddd;
+        a {padding: 15px 10px;}
+      }
+    }
+   
+  }
+}

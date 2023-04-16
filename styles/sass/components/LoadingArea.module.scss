@@ -1,0 +1,11 @@
+@import "../_variables.scss";
+
+.loadingArea {
+  @extend %gradient-2;
+  z-index: 300;
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(center);
+  @include position(fixed, 0 0 null null);
+  @include size(100%);
+}

@@ -1,0 +1,83 @@
+@import "../variables";
+.tabsNav {
+  display: flex;
+  @include align-items(center);
+  @include justify-content(center);
+  @extend %no-list;
+  margin-bottom: 30px;
+
+  li {
+    margin-bottom: 0;
+    a {
+      display: block;
+      padding: 10px 20px;
+      color: #450e91;
+      font-size: 16px;
+      background: #eee;
+      border-radius: 200px;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    &.activeTab {
+      a {
+        color: $white;
+        background-color: $basecolor1;
+      }
+    }
+  }
+}
+.CSupport {
+  input {
+    width: 100%;
+  }
+  background: #fff;
+  border: solid 1px #ddd;
+  @include border-radius(20px 20px 0px 0px);
+  overflow: hidden;
+  padding: 25px 20px;
+  &.usersection {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+  .box {
+    height: 232px;
+    background: #ffffff;
+    box-shadow: 0px 4px 10px #bfcada;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    align-items: flex-start;
+    padding: 26px 6px;
+    margin: 7px 0;
+    p {
+      font-size: $bfsize-xs;
+      font-size: 12px;
+    }
+    img {
+      height: 50px;
+      margin-bottom: 20px;
+      width: 50px;
+      margin-bottom: 20px;
+    }
+    h6 {
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+  }
+  .Cbox {
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    @include border-radius(12px);
+    padding: 20px;
+    gap: 20px;
+    img {
+      height: 40px;
+      width: 40px;
+    }
+  }
+}

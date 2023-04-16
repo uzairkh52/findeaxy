@@ -1,0 +1,329 @@
+@import "../_variables.scss";
+.Header {
+  border: solid 2px red;
+}
+.headerbar {
+  padding: 10px 0 5px;
+  z-index: 1;
+  .headerbarbox {
+    line-height: 1.6;
+    a {
+      line-height: 1;
+      img {
+        width: 20px;
+        height: 22px;
+      }
+    }
+  }
+}
+#header {
+  position: relative;
+  z-index: 2;
+  z-index: 300;
+  padding: 24px 0;
+  @include size(100%, $header-height);
+  // @include position(fixed, 46px 0 null null);
+  @include transition($duration-2);
+  .headerRow {
+    position: relative;
+    .desktopHeader {
+      position: absolute;
+      top: 65px;
+      right: 0;
+      z-index: 31;
+      @include box-shadow(0, 0, 10px, rgba($black, 0.2));
+      @include border-radius(20px);
+      padding: 20px 40px;
+      width: 370px;
+      ul {
+        li a {
+          text-decoration: none;
+
+          display: block;
+          padding: 10px 0px;
+          color: $black;
+          font-weight: bold;
+        }
+      }
+      .enterbutton {
+        width: 100%;
+      }
+      .socialIcons {
+        justify-content: space-between;
+        margin-top: 20px;
+        .socialBtn {
+          color: $basecolor1;
+          background: #d3d3d3;
+
+          @include size(40px);
+          font-size: 20px;
+          border-radius: 100px;
+          text-decoration: none;
+          padding: 0;
+          line-height: 1em;
+          @include display(flex);
+          @include align-items(center);
+          @include justify-content(center);
+          img {
+            width: 20px;
+          }
+          &:hover {
+            background-color: $white;
+            color: $basecolor1 !important;
+          }
+        }
+      }
+    }
+  }
+  .Loginbutton {
+    color: $basecolor2;
+    &:hover {
+      color: $white;
+      background-color: $basecolor2;
+    }
+  }
+
+  .nav {
+    .Navabar {
+      > ul {
+        @include not-for-mobile {
+          @include display(flex);
+          @include align-items(center);
+          @include justify-content(center);
+        }
+        li {
+          margin: 0;
+          a {
+            display: block;
+            padding: 8px 17px 7px;
+            text-decoration: none;
+            color: $black;
+            letter-spacing: 1.5px;
+            @include border-radius(100px);
+          }
+          &:hover > a,
+          > a.active {
+            background: #fff;
+            color: $basecolor2;
+            @include padding(null 20px);
+          }
+        }
+      }
+    }
+  }
+  &.fixedHeader {
+    padding: 6px 0;
+    height: $header-height - 35;
+    box-shadow: 0 0 10px rgba($basecolor1, 0.1);
+    background: #ffffffde;
+    -webkit-backdrop-filter: saturate(180%) blur(5px);
+    backdrop-filter: saturate(180%) blur(5px);
+    top: 0;
+    .socialIcons {
+      .hamburgerIcon {
+        color: $basecolor2;
+        border: solid 1px $basecolor2;
+      }
+      .cart {
+        border: solid 1px $basecolor2;
+        .icon {
+          color: $basecolor2;
+        }
+      }
+    }
+
+    .nav .Navabar > ul li a {
+      color: $basecolor1;
+
+      letter-spacing: 1px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
+  .headerRow {
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(center);
+  }
+  .col1 {
+    @include flexWidth(10%);
+  }
+  .col2 {
+    @include flexWidth(50%);
+  }
+  .col3 {
+    @include flexWidth(40%);
+  }
+  .hamburgerIcon {
+    @include size(42px);
+    background: none;
+  }
+  #logo {
+    @include size(53px);
+  }
+  .socialIcons {
+    .socialBtn {
+      background: #fff;
+      &:hover {
+        background-color: $white;
+      }
+    }
+    .hamburgerIcon {
+      color: $basecolor1;
+      @include size(42px);
+      border: solid 1px $white;
+
+      margin-left: 10px;
+    }
+    .cart {
+      margin-left: 10px;
+      position: relative;
+      background: none;
+      padding: 0;
+      border: solid 1px $white;
+      text-align: center;
+      text-decoration: none;
+      @include size(42px);
+      @include display(flex);
+      @include align-items(center);
+      @include justify-content(center);
+      @include border-radius(100%);
+      .icon {
+        color: $white;
+        margin: 0;
+        @include size(42px);
+        @include display(flex);
+        @include align-items(center);
+        @include justify-content(center);
+      }
+      .cartCount {
+        background: $basecolor2;
+        font-size: $bfsize-mb;
+        font-weight: $regular;
+        line-height: 20px;
+        color: $white;
+        @include size(20px);
+        @include position(absolute, -5px null null -5px);
+        @include border-radius(100%);
+        i {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+.darkHeader {
+  // border: solid 1px red;
+}
+@include for-mobile-large-screen {
+  #header {
+    height: $header-height-mb;
+    padding: 6px 0;
+    &.fixedHeader {
+      .socialIcons {
+        .socialBtn {
+          background: $basecolor2;
+          &:hover {
+            background-color: $basecolor2;
+          }
+        }
+        .hamburgerIcon {
+          color: $basecolor2;
+          border: solid 1px $basecolor2;
+        }
+        .cart {
+          color: $basecolor2;
+          border: solid 1px $basecolor2;
+          .icon {
+            color: $basecolor2;
+          }
+        }
+      }
+    }
+    .col1 {
+      @include flexWidth(30%);
+    }
+    .col2 {
+      @include flexWidth(0%);
+    }
+    .col3 {
+      @include flexWidth(70%);
+      .socialIcons {
+        a {
+          font-size: 12px;
+          margin-right: 8px;
+        }
+      }
+    }
+    .nav {
+      @include position(fixed, 0 0 null null);
+      @include size(100%);
+      padding: 0 0 0 20%;
+      opacity: 0;
+      visibility: hidden;
+      &.menuOpen {
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+      }
+      &:before {
+        content: "";
+        display: block;
+        @include position(absolute, 0 0 null null);
+        @include size(100%);
+        @include linear-gradient(
+          to right,
+          $gradient2-color1,
+          50%,
+          $gradient2-color2
+        );
+        @include opacity(0.8);
+      }
+      .Navabar {
+        width: 275px;
+        position: absolute;
+        z-index: 2;
+        background: $white;
+        height: 100vh;
+        padding-top: 0;
+        right: 0;
+        > ul {
+          position: relative;
+          z-index: 2;
+          width: 275px;
+          background: $white;
+          height: 100vh;
+          padding-top: 0;
+
+          .loginRow {
+            display: table;
+            padding: 8px 17px 8px;
+            .mbbutton {
+              color: $white;
+            }
+          }
+          > li {
+            > a {
+              color: $white;
+
+              border-top: solid 1px $bc1-lighter;
+              color: $basecolor1;
+              @include border-radius(0);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .headerbar {
+    position: relative;
+
+    padding: 6px 0;
+  }
+  #header nav ul li {
+    font-size: 15px;
+  }
+}

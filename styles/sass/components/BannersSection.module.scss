@@ -1,0 +1,15 @@
+@import "../_variables.scss";
+// .bannersSection {
+//   img {
+//     @include border-radius(10px);
+//   }
+// }
+
+.pastWinners {
+  border: solid 1px red;
+}
+.winnerImg {
+  img {
+    @include border-radius($base-border-radius);
+  }
+}

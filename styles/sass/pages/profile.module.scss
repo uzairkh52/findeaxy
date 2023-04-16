@@ -1,0 +1,201 @@
+@import "../variables";
+$ticketBg: #eeeae4;
+
+
+// sidebar
+.OrderSidebar {
+   background: #fff;
+   border: solid 1px #ddd;
+   @include border-radius(20px);
+   overflow: hidden;
+   .userheader {
+     padding: 25px 20px;
+     background: #eeeeee;
+     .Content {
+     }
+   }
+   .SidebarNav ul {
+     text-decoration: none;
+     padding: 0px;
+     li {
+       display: block;
+       margin: 0px;
+       padding: 0;
+       &:not(:last-child) {
+         border-bottom: solid 1px #ddd;
+       }
+ 
+       a,
+       button {
+         display: block;
+         text-decoration: none;
+         color: $black;
+         background: none;
+         padding: 15px 20px;
+         width: 100%;
+         margin: 0;
+         text-align: left;
+         @include border-radius(0 !important);
+         &:hover {
+           background: $bc1-lightest;
+           color: $basecolor1;
+         }
+       }
+     }
+   }
+ }
+ 
+ 
+ @media (max-width: 991px) {
+   .OrderSidebar {
+     .SidebarNav ul {
+       &::-webkit-scrollbar {
+         display: none;
+       }
+       display: flex;
+       flex-wrap: nowrap;
+       white-space: nowrap;
+       overflow-x: scroll;
+       li {
+         border-right: solid 1px #ddd;
+         a {padding: 15px 10px;}
+       }
+     }
+    
+   }
+ }
+//  end sidebar
+.MyOrder {
+  overflow: hidden;
+.myOrderSection {}
+  .tickletsList {
+    .ticketBox {
+      display: block;
+      @include border-radius($base-border-radius);
+      background: $ticketBg;
+      padding: 0;
+      margin: 10px 0;
+      overflow: hidden;
+      .ticketBoxRow1 {
+        border-bottom: solid 1px #ddd;
+        padding: 10px 20px;
+        .thumb {
+          margin-right: 15px;
+          width: 100px;
+        }
+  
+      }
+      .ticketBoxRow2 {
+        @include display(flex);
+        @include align-items(center);
+        @include justify-content(space-between);
+        > div {
+          padding: 0 10px;
+        }
+        .leftCol {
+          .wjLogo {
+            margin-bottom: 10px;
+            img {
+              width: 30px;
+              margin-right: 10px;
+            }
+            span {
+              font-size: $bfsize + 4;
+              font-weight: $bold;
+              color: $basecolor2;
+            }
+          }
+          .drawDate {
+            font-size: $bfsize-xs;
+          }
+        }
+        .ticketNumber {
+          font-size: $bfsize + 5;
+          font-weight: $bold;
+          color: $basecolor2;
+        }
+        .midColumn {
+          width: 40%;
+          .desc {
+            font-size: $bfsize-xs;
+            color: $basecolor1;
+          }
+        }
+        .rightCol {
+          background: $basecolor2;
+          height: 100px;
+          color: $white;
+          min-width: 120px;
+          text-align: center;
+          position: relative;
+  
+          width: 36%;
+          &:before,
+          &:after {
+            content: "";
+            display: block;
+            background: $ticketBg;
+            @include size(24px);
+            @include border-radius(10px);
+            @include position(absolute, null null null -10px);
+          }
+          &:before {
+            top: -10px;
+          }
+          &:after {
+            bottom: -10px;
+          }
+        }
+        .prizeTitle {
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .MyOrder {
+    padding: 0;
+
+    .myOrderSection {padding: 20px 0;}
+
+    .tickletsList .ticketBox {
+      .ticketBoxRow1 {
+        padding: 8px;
+        >div {
+          font-size: 12px;
+
+        }
+        h4 {
+        font-size: 16px;
+        }
+        .thumb {width: 70px;}
+      }
+        .ticketBoxRow2 {
+          flex-wrap: wrap;
+          padding: 20px 0 0;
+          > div {width: 100%;}
+
+          
+          .leftCol {
+            border-bottom: solid 1px #ddd;
+            padding: 0px 10px 8px;
+            margin-bottom: 10px;
+          }
+        .rightCol {
+          width: 100%;
+          height: 90px;
+          &::before,
+          &::after {
+            left: 48%;
+          }
+        }
+        .midColumn {
+          width: 100%;
+          
+          padding: 0px 10px 8px;
+        }
+      }
+    }
+  }
+}
