@@ -12,9 +12,10 @@ import { numberWithCommas } from "@/component/reUseable";
 import { ImageUrl } from "@/store/apis/ImageUrl";
 
 // import styles from "../sass/pages/Home.module.scss";
-const SearchCard = (props) => {
+const MobileSearchCard = (props) => {
   console.log("ImageUrl", ImageUrl);
-  const imageurl = ImageUrl + props.item.car_images;
+  const imageurl = ImageUrl + props.item.mobile_images;
+
   const [showNumber, setShowNumber] = useState(true);
   const SHowNumberHandle = (e) => {
     setShowNumber((showNumber) => !showNumber);
@@ -68,7 +69,7 @@ const SearchCard = (props) => {
     <>
       <Grid.Column className={styles.CardColumn + " mb-30"}>
         <div className={styles.wjcard + " br-12 link-wrap"} mobile={16}>
-          <a className={"link"} href={props.item.slug}></a>
+          <Link className={"link"} href={props.item.slug}></Link>
           <div className={styles.CardHeader}>
             <div className={styles.progBar}>
               <div className={styles.progBarIn}>
@@ -113,30 +114,30 @@ const SearchCard = (props) => {
             </div>
             {/* get a chance row */}
             <div
-              className={styles.row_2 + " flexbox flex-center jc-space-between"}
+              className={styles.row_1 + " flexbox flex-center jc-space-between"}
             >
               <div>
-                <div className={styles.sub_title}>car Year</div>
-                <div className={styles.title}>{props.item.car_year}</div>
+                <div className={styles.sub_title}>
+                  Brand <span className={"basecolor2"}></span>
+                </div>
+                <div className={styles.title}>{props.item.mobile_brand}</div>
               </div>
-
               <div>
-                <div className={styles.sub_title}>Car price</div>
+                <div className={styles.sub_title}>Mobile price</div>
                 <div className={styles.price + " "}>Rs. {props.item.price}</div>
               </div>
             </div>
+
             <div
-              className={styles.row_2 + " flexbox flex-center jc-space-between"}
+              className={styles.row_1 + " flexbox flex-center jc-space-between"}
             >
               <div>
-                <div className={styles.sub_title}>Car location</div>
+                <div className={styles.sub_title}>Location</div>
                 <div className={styles.title}>{props.item.location}</div>
               </div>
               <div>
-                <div className={styles.sub_title}>
-                  Car drive km <span className={"basecolor2"}></span>
-                </div>
-                <div className={styles.title}>{props.item.car_drive_km} km</div>
+                <div className={styles.sub_title}>Condition</div>
+                <div className={styles.title}>{props.item.condition}</div>
               </div>
             </div>
             <div className={styles.row_3 + " flexbox flex-center jc-center"}>
@@ -168,4 +169,4 @@ const SearchCard = (props) => {
   );
 };
 
-export default SearchCard;
+export default MobileSearchCard;

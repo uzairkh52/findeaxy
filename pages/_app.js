@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import "semantic-ui-css/semantic.min.css";
 import "../styles/sass/application.scss";
+import "../styles/css/style.css";
 // redux
 import { useStore } from "@/store/Services/store";
 import { Provider } from "react-redux";

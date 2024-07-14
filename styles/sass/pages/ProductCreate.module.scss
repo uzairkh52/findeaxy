@@ -1,0 +1,50 @@
+@import "../_variables.scss";
+
+.ProductCreateSection {
+  [type="file"],
+  [type="checkbox"],
+  [type="radio"] {
+    display: none;
+  }
+
+  .labelfirst {
+    font-size: 18px;
+    margin: 20px 0 6px;
+    display: block;
+  }
+  label {
+    .checkboxLabel,
+    .radioLabel {
+      margin-right: 15px;
+      padding: 10px 12px;
+      border-radius: 220px;
+      border: solid 1px $black;
+      opacity: 0.4;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
+
+  input[type="checkbox"]:checked ~ .checkboxLabel,
+  input[type="radio"]:checked ~ .radioLabel {
+    border: solid 1px $basecolor1;
+    opacity: 1;
+    position: relative;
+
+    &.checkboxLabel {
+      padding: 10px 15px 10px 35px;
+      &::after {
+        content: "\eed7";
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-family: $iconfont;
+        padding: 10px 15px;
+        font-size: $bfsize;
+        color: $green;
+      }
+    }
+  }
+}
+@include for-mobile-large-screen {
+}

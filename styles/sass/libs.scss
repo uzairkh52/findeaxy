@@ -3,6 +3,7 @@
 ===================================================================*/
 
 // @import 'variables';
+.ui.text.container,
 body {
   white-space: normal;
   font-family: $primary-font;
@@ -226,6 +227,12 @@ p {
 }
 
 // a) Variable base classes - start
+.secondary-font {
+  &,
+  * {
+    font-family: $secondary-font;
+  }
+}
 .primary-font {
   &,
   * {
@@ -1288,6 +1295,9 @@ body {
   }
 }
 
+.deactive {
+  opacity: 0.6;
+}
 .link-wrap {
   position: relative;
   .link {

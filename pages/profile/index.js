@@ -19,32 +19,43 @@ import Link from "next/link";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "@/component/Header";
-import { getUserAction } from "@/store/Services/Actions/getUserAction";
 
 const Profile = (props) => {
   const [activecol, setActivecol] = useState(1);
-  const [User, setUser] = useState();
+  const [user, setUser] = useState();
   //   get user data
+  const [userId, setUserId] = useState("");
+  const [Firstname, setFirstname] = useState("");
+  const [Lastname, setLastname] = useState("");
+  const [Phone, setPhone] = useState("");
+  const [Email, setEmail] = useState("");
+
   const getUser = useSelector((state) => state.getUserReducer);
-  const getUserDispatch = useDispatch();
-  const loadUserDispatch = () => {
-    getUserDispatch(getUserAction());
-  };
 
-  const str = getUser?.first_name;
-  const firstLetter = str?.split("")[0]?.toUpperCase() + ".";
+  // const getUserData = () => {
+  //   setFirstname(getUser.first_name);
+  //   setLastname(getUser.last_name);
+  //   setPhone(getUser.phone);
+  //   setEmail(getUser.email);
+  // };
+  // {
+  //   Firstname ? console.log("Firstname", Firstname) : "";
+  // }
 
-  console.log("User111", User);
-  const GetUserControll = () => {
-    {
-      getUser && getUser.data ? setUser(getUser.data) : "";
-    }
-  };
   useEffect(() => {
-    GetUserControll();
-    loadUserDispatch();
-  }, []);
+    {
+      getUser && getUser.data ? setUserId(getUser.data.id) : "";
+      getUser && getUser.data ? setFirstname(getUser.data.first_name) : "";
+      getUser && getUser.data ? setLastname(getUser.data.last_name) : "";
+      getUser && getUser.data ? setEmail(getUser.data.email) : "";
+      getUser && getUser.data ? setPhone(getUser.data.phone) : "";
+    }
+    // userid();
+  }, [getUser]);
 
+  console.log("Firstname", Firstname);
+  const str = Firstname;
+  const firstLetter = str.split("")[0]?.toUpperCase() + ".";
   return (
     <>
       <Header />
@@ -76,16 +87,10 @@ const Profile = (props) => {
                               className={classNames(styles.Content, " pl-10")}
                             >
                               <div className=" black bold"></div>
-                              {/* {getUser ? (
-                                <>
-                                  {firstLetter} {getUser?.last_name}
-                                  <div className=" black f13">
-                                    {getUser?.email}
-                                  </div>
-                                </>
-                              ) : (
-                                ""
-                              )} */}
+                              <>
+                                {firstLetter} {Lastname}
+                                <div className=" black f13">{Email}</div>
+                              </>
                             </div>
                           </div>
                         </div>
@@ -133,19 +138,12 @@ const Profile = (props) => {
 
                     {activecol == 1 ? (
                       <>
-                        {User && User.user ? (
-                          <>
-                            {console.log("User111", User.user)}
-                            <MyProfile
-                              first_name={User.user.first_name}
-                              last_name={User.user.last_name}
-                              phone={User.user.phone}
-                              email={User.user.email}
-                            />
-                          </>
-                        ) : (
-                          ""
-                        )}
+                        <MyProfile
+                          first_name={Firstname}
+                          last_name={Lastname}
+                          phone={Phone}
+                          email={Email}
+                        />
                       </>
                     ) : activecol == 2 ? (
                       "<MyOrder/>"

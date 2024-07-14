@@ -5,13 +5,19 @@ import { ImageUrl } from "../../../store/apis/ImageUrl";
 import Link from "next/link";
 import Http from "@/store/apis/Http";
 import { useRouter } from "next/router";
+import classNames from "classnames";
 function MyProductItem(props) {
   const [removeCartLoading, setRemoveCartLoading] = useState(false);
 
   const imageurl = ImageUrl + props.item.car_images;
+
   return (
     <>
-      <div className={styles.checkboxMegaItem + " link-wrap"}>
+      <div
+        className={classNames(
+          styles.checkboxMegaItem + " " + props.item.status + " link-wrap"
+        )}
+      >
         <Link
           className={"link"}
           href={`/product/search/${props.item.slug}`}
@@ -52,27 +58,19 @@ function MyProductItem(props) {
                   </Grid.Column>
                   <Grid.Column computer={4} mobile={8} floated={"left"}>
                     <div className="mt-10">
-                      <Link
-                        className={"ui button btn btn-xs btn-success"}
-                        href={"props.selectNumber"}
-                      >
-                        Active
-                      </Link>
-                      <div className={""}>This product is live</div>
+                      <Button className={"ui button btn btn-xs btn-success"}>
+                        {props.item.status}
+                      </Button>
+                      <div className={""}>
+                        {props.item.status == "active"
+                          ? "This product is live"
+                          : "This product is not live"}
+                      </div>
                     </div>
                   </Grid.Column>
                   <Grid.Column computer={3} mobile={8} floated={"right"}>
                     <div className={" align-right"}>
-                      <div>
-                        <Button
-                          // loading={removeCartLoading}
-                          className={"btn btn btn-basic btn-sm"}
-                          // onClick={() => removeCartHandle("props.cart_id")}
-                        >
-                          <i class="icofont-eye-blocked"></i>
-                          disable
-                        </Button>
-                      </div>
+                      <div>{props.ACtiveDeactiveProduct}</div>
                     </div>
                   </Grid.Column>
                 </Grid.Row>

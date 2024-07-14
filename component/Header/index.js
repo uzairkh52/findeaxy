@@ -132,18 +132,15 @@ const Header = (props) => {
                     <li>
                       <Link href={"/product/search/car"}>Car</Link>
                     </li>
-
                     <li>
-                      <Link
-                        className={
-                          styles.Loginbutton + " ui button btn btn-white"
-                        }
-                        href={"/product/product-create"}
-                      >
-                        Make Your Product
-                      </Link>
+                      <Link href={"/product/search/bike"}>Bike</Link>
                     </li>
-
+                    <li>
+                      <Link href={"/product/search/mobile"}>Mobile</Link>
+                    </li>
+                    <li>
+                      <Link href={"/product/search/laptop"}>Laptop</Link>
+                    </li>
                     <li>
                       <div className={styles.loginRow + " mobile only"}>
                         {isUserLoggedIn ? (
@@ -185,7 +182,10 @@ const Header = (props) => {
                       className={
                         styles.Loginbutton + " ui button btn btn-white"
                       }
-                      href={"/product/product-create"}
+                      href={
+                        isUserLoggedIn ? "/product/product-create" : "/login"
+                      }
+                      onClick={() => menuVisibileHandle()}
                     >
                       Make Your Product
                     </Link>
@@ -206,7 +206,9 @@ const Header = (props) => {
                       className={
                         styles.Loginbutton + " ui button btn btn-white"
                       }
-                      href={"/product/product-create"}
+                      href={
+                        isUserLoggedIn ? "/product/product-create" : "/login"
+                      }
                     >
                       Make Your Product
                     </Link>

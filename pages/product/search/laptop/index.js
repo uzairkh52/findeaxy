@@ -1,25 +1,26 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Container, Button } from "semantic-ui-react";
+import { Grid, Container } from "semantic-ui-react";
 import HeroSection from "@/component/HeroSection";
 import SearchCard from "@/component/search-result/search-card";
 import Http from "@/store/Services/Http";
 import LoadingArea from "@/component/Layouts/LoadingArea";
 import Header from "@/component/Header";
-import { GetProductAction } from "@/store/Services/Actions/getProductAction";
-import { GET_Cart_PRODUCT } from "@/store/Services/api";
-import styles from "../../../../styles/sass/search/searchCard.module.scss";
 
+import LaptopSearchCard from "@/component/search-result/LaptopSearchCard";
+import { GET_LAPTOP_PRODUCT } from "@/store/Services/api";
 const SearchResult = (props) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [Carproduct, setCarproduct] = useState();
+  const [Getproduct, setgetproduct] = useState();
+
   function getProduct() {
     setIsLoading(true);
-    Http.get(GET_Cart_PRODUCT)
+    Http.get(GET_LAPTOP_PRODUCT)
       .then((res) => {
-        const data = res.data;
-        setCarproduct(data);
+        const data = res.data.data;
+        setgetproduct(data);
         setIsLoading(false);
+        console.log("data11", res);
       })
       .catch((error) => {
         const response = error.response;
@@ -27,15 +28,6 @@ const SearchResult = (props) => {
       });
   }
 
-  const ShowNumberHandle = (e, value, id) => {
-    // const activenumber = document.getElementById(id);
-    setShowNumber(false);
-    // if (activenumber) {
-    // } else {
-    //   setShowNumber(value);
-    // }
-    // console.log("eee", value.value);
-  };
   useEffect(() => {
     getProduct();
   }, []);
@@ -43,20 +35,18 @@ const SearchResult = (props) => {
     <>
       <main>
         <Header />
-        <HeroSection heading={"Car"} />
+        <HeroSection heading={"Laptops"} />
         <section className={"section-padding"}>
           <Container>
             <Grid stackable>
               {!isLoading ? (
                 <>
                   <Grid.Row columns={3}>
-                    {Carproduct.data ? (
+                    {Getproduct ? (
                       <>
-                        {Carproduct.data.map((item, i) => {
-                          {
-                            console.log("item111", item.user.phone);
-                          }
-                          return <SearchCard item={item} key={i} />;
+                        {Getproduct.map((item, i) => {
+                          console.log("item", item);
+                          return <LaptopSearchCard item={item} key={i} />;
                         })}
                       </>
                     ) : (

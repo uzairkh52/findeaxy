@@ -7,7 +7,7 @@ export const getUserService = {
 function getUser(params) {
   return Http.get(GET_USER, params)
     .then((response) => {
-      const data = response.data;
+      const data = response.data.user;
       return {
         data,
         params: params,

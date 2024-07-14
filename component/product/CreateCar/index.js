@@ -1,5 +1,5 @@
 import Http from "@/store/Services/Http";
-import styles from "../../styles/sass/pages/ProductCreate.module.scss";
+import styles from "../../../styles/sass/pages/ProductCreate.module.scss";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import $ from "jquery";
@@ -23,8 +23,9 @@ import {
 } from "semantic-ui-react";
 import Cookies from "js-cookie";
 import { Router, useRouter } from "next/router";
+import { CAR_ADD } from "@/store/Services/api";
 
-const ProductCreate = () => {
+const CreateCar = () => {
   const [car_make, setcar_Make] = useState("");
   const [fieldCarMake, setFieldCarMake] = useState("");
   const [fieldcarModel, setFieldcarModel] = useState("");
@@ -190,9 +191,10 @@ const ProductCreate = () => {
     fileData.append("condition", field_condition);
     fileData.append("price", field_price);
     fileData.append("location", field_location);
+    fileData.append("status", "active");
 
     console.log("fileData", fileData);
-    Http.post("/product/add", fileData)
+    Http.post(CAR_ADD, fileData)
       .then((res) => {
         setStatus(res.status);
         setSubmitmsg(res.data.status);
@@ -745,4 +747,4 @@ const ProductCreate = () => {
   );
 };
 
-export default ProductCreate;
+export default CreateCar;

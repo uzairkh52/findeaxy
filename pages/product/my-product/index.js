@@ -29,10 +29,31 @@ function MyProduct() {
   const [isLoading, setIsloading] = useState(true);
   const [MyProduct, setMyProduct] = useState();
   //
+  const [myproductactive, setMyproductActive] = useState("active");
+  function ActiveDeactiveHandle(e, value, id) {
+    console.log("eee", value.value);
+    if (value.value === "active") {
+      // setMyproductActive("deactive");
+      const params = { status: "active" };
+      Http.put(`/my-product/update/${id}`, params).then((res) => {
+        const data = res.data;
+        getMyProduct();
+      });
+    } else {
+      const params = { status: "deactive" };
+      Http.put(`/my-product/update/${id}`, params).then((res) => {
+        const data = res.data;
+        getMyProduct();
+      });
+    }
+  }
 
-  // const getMyProductData = useSelector((state) => {
-  //   return state.GetMyProductReducer.data;
-  // });
+  // const getMyProductData = useSelector((state) => state.GetMyProductReducer);
+
+  // console.log("getMyProductData", getMyProductData);
+  // useEffect(() => {
+  //   getMyProductData;
+  // }, [getMyProductData]);
   // const myproductDispatch = useDispatch();
   // const LoadMyproduct = () => {
   //   myproductDispatch(GetMyProductAction());
@@ -43,7 +64,8 @@ function MyProduct() {
     setIsloading(true);
     Http.get(GET_MY_PRODUCT)
       .then((res) => {
-        const data = res.data.myproduct;
+        const data = res.data.data;
+        console.log("data111", data);
         setMyProduct(data);
         setIsloading(false);
       })
@@ -61,8 +83,8 @@ function MyProduct() {
     Http.delete(`/my-product/delete/${params.id}`).then((res) => {
       const data = res.data.status;
       setdeleteMyProduct(data);
-      LoadMyproduct();
       setIsloading(false);
+      getMyProduct();
     });
   };
 
@@ -129,6 +151,7 @@ function MyProduct() {
                                 deleteHandle={
                                   <>
                                     <a
+                                      className="none"
                                       onClick={() =>
                                         DeleteProduct(getmyProduct.id)
                                       }
@@ -137,6 +160,39 @@ function MyProduct() {
                                     </a>
                                   </>
                                 }
+                                ACtiveDeactiveProduct={
+                                  <>
+                                    <Button
+                                      // loading={removeCartLoading}
+                                      className={"btn btn btn-primary btn-sm"}
+                                      value={
+                                        getmyProduct.status == "active"
+                                          ? "deactive"
+                                          : "active"
+                                      }
+                                      onClick={(e, value) =>
+                                        ActiveDeactiveHandle(
+                                          e,
+                                          value,
+                                          getmyProduct.id
+                                        )
+                                      }
+                                    >
+                                      {getmyProduct.status == "active" ? (
+                                        <>
+                                          <i class="icofont-eye"></i>
+                                          <span value={"aaa"}>Deactive</span>
+                                        </>
+                                      ) : (
+                                        <>
+                                          <i class="icofont-eye-blocked"></i>
+                                          <span>Active</span>
+                                        </>
+                                      )}
+                                    </Button>
+                                  </>
+                                }
+                                ACtiveDeactiveClass={getmyProduct.status}
                               />
                             </>
                           );
@@ -151,66 +207,7 @@ function MyProduct() {
                 )}
 
                 <div className="main-checkout-sec">
-                  {/* 
-                  {getMyProductData.myProduct &&
-                  getMyProductData &&
-                  getMyProductData.myProduct.length ? (
-                    <>
-                      {getMyProductData.myproduct.map((getMyproduct) => {
-                        console.log("get111", getMyproduct);
-                      })}
-                    </>
-                  ) : (
-                    ""
-                  )} */}
-
-                  <div className={" cartPriceDetail"}>
-                    <div className="jc-left align-right">
-                      <h2 className="black-txt-all regular f34 total-ammount">
-                        Total: <span className="f34 basecolor1 bold">AED</span>
-                      </h2>
-                    </div>
-                    <div className="jc-left align-right">
-                      <h2 className="black-txt-all regular f18 total-ammount">
-                        Sub total:{" "}
-                        <span className="f34 basecolor1 bold">AED</span>
-                      </h2>
-                    </div>
-                    <div className="jc-left align-right">
-                      <h2 className="black-txt-all regular f16 total-ammount">
-                        VAT: <span className="f34 basecolor1 bold">AED</span>
-                      </h2>
-                    </div>
-                    <div className="jc-left  align-right">
-                      <p className="f12 regular black-txt-all hidden_mb">
-                        By clicking the checkout button, you agree to our{" "}
-                        <span className="basecolor1 f12 underline">
-                          <Link href={`/terms-conditions`}>
-                            terms and conditions
-                          </Link>
-                        </span>
-                      </p>
-                    </div>
-                    <div className="checkoutFooter flexbox flex-center jc-right jc-left">
-                      <Link href={"/"}>
-                        <div>
-                          <Button color={"white"} size={"huge"}>
-                            Continue Shopping
-                          </Button>
-                        </div>
-                      </Link>
-                      <div className="ml-20">
-                        <Button
-                          primary
-                          fluid
-                          onClick={() => dispatch({ type: "OPEN_MODAL" })}
-                          size={"huge"}
-                        >
-                          Checkout
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
+                  
                 </div>
               </section>
             </div>

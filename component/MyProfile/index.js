@@ -12,26 +12,52 @@ import {
   Dropdown,
 } from "semantic-ui-react";
 import Http from "@/store/Services/Http";
-import { USER_UPDATE } from "@/store/Services/api";
+import { GET_USER, USER_UPDATE } from "@/store/Services/api";
 const MyProfile = (props) => {
   const [activecol, setActivecol] = useState(1);
+  const [FFname, setFFname] = useState();
+  const [last_name, setLast_name] = useState();
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
 
-  const [first_name, setFirst_name] = useState(props?.first_name);
-  const [last_name, setLast_name] = useState(props?.last_name);
-  const [phone, setPhone] = useState(props?.phone);
-  const [email, setEmail] = useState(props?.email);
+  const [fieldFname, setFieldFname] = useState();
+  const [fieldlname, setFieldLname] = useState(last_name);
+  const [fieldphone, setFieldPhone] = useState(phone);
+  const [fieldemail, setFieldEmail] = useState(email);
   // const [password, setPassword] = useState(props.first_name);
+
+  const [data, setData] = useState({ FFname: FFname });
+
+  const getUser = () => {
+    Http.get(GET_USER)
+      .then((response) => {
+        const data = response.data.user;
+        setFFname(data.first_name);
+        setLast_name(data.last_name);
+        setPhone(data.phone);
+        setEmail(data.email);
+      })
+      .catch((error) => {
+        const response = error.response;
+        return { error: response };
+      });
+  };
+  const fieldhandle = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  console.log("FFname", data);
+
+  useEffect(() => {
+    getUser();
+  }, [getUser]);
 
   const editProfileHandle = (e) => {
     const params = {
-      first_name: first_name,
-      last_name: last_name,
-      phone: phone,
-      email: email,
+      data: data,
     };
     Http.put(USER_UPDATE + props.id, params).then((res) => {
       const data = res;
-      console.log("data111", data);
     });
   };
 
@@ -80,7 +106,7 @@ const MyProfile = (props) => {
         </ul>
         {activecol === 1 ? (
           <>
-            <div className={styles.tickletsList + " inner_main_wrap"}>
+            {/* <div className={styles.tickletsList + " inner_main_wrap"}>
               <>
                 <Grid>
                   <Grid.Row>
@@ -120,10 +146,7 @@ const MyProfile = (props) => {
                   </Grid.Row>
                 </Grid>
               </>
-            </div>
-          </>
-        ) : activecol === 2 ? (
-          <>
+            </div> */}
             <div className={styles.tickletsList + " inner_main_wrap"}>
               <>
                 <Form>
@@ -134,12 +157,10 @@ const MyProfile = (props) => {
                           <label>First Name:</label>
                           <input
                             type="name"
-                            name={"first_name"}
-                            value={first_name}
+                            name={"fname"}
+                            // value={data.fname}
                             // ref={inputRef}
-                            onChange={(e) => {
-                              setFirst_name(e.target.value);
-                            }}
+                            onChange={(e) => fieldhandle(e)}
                           />
                         </Form.Field>
 
@@ -147,11 +168,9 @@ const MyProfile = (props) => {
                           <label>Last Name:</label>
                           <input
                             type="name"
-                            name={"last_name"}
-                            value={last_name}
-                            onChange={(e) => {
-                              setLast_name(e.target.value);
-                            }}
+                            name={"lanme"}
+                            // value={data.lname}
+                            onChange={(e) => fieldhandle(e)}
                           />
                         </Form.Field>
                       </Form.Group>
@@ -161,10 +180,8 @@ const MyProfile = (props) => {
                           <input
                             type="phone"
                             name={"phone"}
-                            value={phone}
-                            onChange={(e) => {
-                              setPhone(e.target.value);
-                            }}
+                            // value={data.phone}
+                            onChange={(e) => fieldhandle(e)}
                           />
                         </Form.Field>
 
@@ -173,10 +190,8 @@ const MyProfile = (props) => {
                           <input
                             type="name"
                             name={"email"}
-                            value={email}
-                            onChange={(e) => {
-                              setEmail(e.target.value);
-                            }}
+                            // value={data.email}
+                            onChange={(e) => fieldhandle(e)}
                           />
                         </Form.Field>
                       </Form.Group>
@@ -207,6 +222,8 @@ const MyProfile = (props) => {
               </>
             </div>
           </>
+        ) : activecol === 2 ? (
+          <></>
         ) : (
           ""
         )}

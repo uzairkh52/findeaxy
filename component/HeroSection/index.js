@@ -19,10 +19,9 @@ const HeroSection = (props) => {
       className={classNames(
         styles.hero_section,
         props.bg ? styles.hasImage : "",
-        props.noFade ? styles.noFade : "",
+        props.noFade ? styles.noFade : ""
       )}
     >
-      
       {props.customContent ? (
         props.customContent
       ) : (
@@ -51,7 +50,7 @@ const HeroSection = (props) => {
               <div
                 className={classNames(styles.hgroup + " " + styles.bannerBox)}
               >
-                <h1 className="uppercase">
+                <h1 className="secondary-font bold">
                   {props.heading}{" "}
                   <span className="text-border-bc-white">
                     {props.headingborder}

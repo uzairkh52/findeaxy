@@ -60,15 +60,10 @@ const Register = () => {
             </section>
             <Divider className={"stack-center sm"} />
             <h6 className={"align-center"}>
-              Already have an account?{" "}
-              <Button
-                primary
-                basic
-                size={"small"}
-                onClick={() => loginRegisterSwitch(true)}
-              >
-                Login
-              </Button>
+              Don't have an account?{" "}
+              <a href="/register" primary basic size={"small"}>
+                Register
+              </a>
             </h6>
           </div>
         )}

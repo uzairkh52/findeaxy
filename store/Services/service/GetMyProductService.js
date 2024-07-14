@@ -4,7 +4,7 @@ export const GetMyProductService = {
   getMyProduct,
 };
 function getMyProduct(params) {
-  console.log("params");
+  console.log("bbb");
   return Http.get(GET_MY_PRODUCT, params)
     .then((res) => {
       const data = res.data;

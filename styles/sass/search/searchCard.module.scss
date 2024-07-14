@@ -45,7 +45,6 @@
     font-size: $bfsize-xs;
     font-weight: $bold;
     @include flexWidth(80px);
-    text-align: right;
   }
   .sub_title {
     font-size: $bfsize-mb;
