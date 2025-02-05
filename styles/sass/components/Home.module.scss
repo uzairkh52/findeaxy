@@ -1,0 +1,13 @@
+@import "../_variables.scss";
+
+.iconImage {
+   width: 60px !important;
+   height: 60px !important;
+   display: flex !important;
+   align-items: center;
+}
+.iconCol:not(:last-child) {
+   .iconBox {
+      border-right: solid 2px $basecolor1 !important;
+   }
+}

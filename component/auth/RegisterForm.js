@@ -37,14 +37,14 @@ const RegisterForm = () => {
       .then((res) => {
         const data = res.data;
         const token = res.data.token;
-        const userid = res.data.user - data.id;
+        const userid = res.data.user-data.id;
 
         setFirst_name();
         setLast_name();
         setPhone();
         setEmail();
         setPassword();
-        setToken();
+        setToken(token);
         console.log("ressss", res);
         const setcookies = [
           {

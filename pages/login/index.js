@@ -4,7 +4,7 @@ import { Button, Container, Divider } from "semantic-ui-react";
 import LoginForm from "../../component/auth/LoginForm";
 import HeroSection from "@/component/HeroSection";
 import { useRouter } from "next/router";
-const Register = () => {
+const Login = () => {
   const [isLoginFormVisible, setisLoginFormVisible] = useState(false);
   const [isUserLoggedIn, setisUserLoggedIn] = useState();
   const router = useRouter();
@@ -72,4 +72,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

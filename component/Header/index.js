@@ -100,7 +100,7 @@ const Header = (props) => {
             <div className={styles.col1}>
               <div id={styles.logo}>
                 <Link href="/">
-                  <img src={"/images/wj-logo2.svg"} />
+                  FindEaxy
                 </Link>
               </div>
             </div>
@@ -114,16 +114,39 @@ const Header = (props) => {
                 <div className={styles.Navabar}>
                   {isMenuVisible == true ? (
                     <>
-                      <div className="only mobile flexbox jc-end">
-                        <Button
-                          className={classNames(styles.hamburgerIcon, " ui ")}
-                          square
-                          color="basecolor2"
-                          icon={!isMenuVisible ? "bars" : "close"}
-                          onClick={() => menuVisibileHandle()}
-                        />
-                      </div>
-                    </>
+                    <div className={styles.desktopHeader + " white-bg"}>
+                      <ul className="no-list">
+                        {isUserLoggedIn ? (
+                          <>
+                            
+                          <li>
+                            <Link href={"/product/search/car"}>Sell Your Car</Link>
+                          </li>
+                          <li>
+                            <Link href={"/product/search/bike"}>Sell Your Bike</Link>
+                          </li>
+                          <li>
+                            <Link href={"/product/search/mobile"}>Sell Your Mobile/Tablet</Link>
+                          </li>
+                          <li>
+                            <Link href={"/product/search/laptop"}>Sell Your Laptop</Link>
+                          </li>
+                          </>
+                        ) : (
+                          <>
+                            <Link
+                              className={
+                                styles.enterbutton + " btn button ui btn-primary"
+                              }
+                              href={"/login"}
+                            >
+                              Login/Signup
+                            </Link>
+                          </>
+                        )}
+                      </ul>
+                    </div>
+              </>
                   ) : (
                     ""
                   )}
@@ -136,7 +159,7 @@ const Header = (props) => {
                       <Link href={"/product/search/bike"}>Bike</Link>
                     </li>
                     <li>
-                      <Link href={"/product/search/mobile"}>Mobile</Link>
+                      <Link href={"/product/search/mobile"}>Mobile/Tablet</Link>
                     </li>
                     <li>
                       <Link href={"/product/search/laptop"}>Laptop</Link>
@@ -178,33 +201,20 @@ const Header = (props) => {
 
                 {isUserLoggedIn ? (
                   <>
-                    <Link
-                      className={
-                        styles.Loginbutton + " ui button btn btn-white"
-                      }
-                      href={
-                        isUserLoggedIn ? "/product/product-create" : "/login"
-                      }
+                  <Button
+                    className={classNames(
+                      styles.Loginbutton + " ui button btn btn-white"
+                    )}
                       onClick={() => menuVisibileHandle()}
                     >
                       Make Your Product
-                    </Link>
-                    <div className="ml-10 mr-10">
-                      {getUser ? (
-                        <>
-                          {firstLetter}
-                          {getUser?.last_name}
-                        </>
-                      ) : (
-                        ""
-                      )}
-                    </div>
+                    </Button>
                   </>
                 ) : (
                   <>
                     <Link
                       className={
-                        styles.Loginbutton + " ui button btn btn-white"
+                        styles.Loginbutton + " ui button btn btn-white mr-10"
                       }
                       href={
                         isUserLoggedIn ? "/product/product-create" : "/login"
@@ -222,23 +232,6 @@ const Header = (props) => {
                     </Link>
                   </>
                 )}
-                <Link className={styles.cart + " basecolor1"} href={"/cart"}>
-                  <Icon name={"cart"} className={styles.icon} />
-                  <span className={styles.cartCount}>
-                    {/* {getCart.processing ? (
-                        <Icon loading name="spinner" />
-                      ) : ( */}
-                    <>
-                      {/* {getCart.data &&
-                          getCart.data.data &&
-                          getCart.data.data.length
-                            ? getCart.data.data.length
-                            : 0} */}
-                    </>
-                    {/* )} */}
-                  </span>
-                </Link>
-
                 <Button
                   className={classNames(
                     styles.hamburgerIcon,

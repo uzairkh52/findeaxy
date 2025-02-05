@@ -4,7 +4,7 @@ import Http from "@/store/apis/Http";
 import { useRouter } from "next/router";
 import { Cookie } from "next-cookie";
 import Cookies from "js-cookie";
-const RegisterForm = () => {
+const LoginForm = () => {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ const RegisterForm = () => {
   const [isUserLoggedIn, setisUserLoggedIn] = useState();
   const [isLoading, setisLoading] = useState(false);
 
-  const RegisterController = (e) => {
+  const LoginController = (e) => {
     setisLoading(true);
     const params = {
       email: email,
@@ -41,6 +41,8 @@ const RegisterForm = () => {
           setisLoading(false);
           setIsUserLoggedIn(issession);
         }
+        console.log("res", res);
+        
       })
       .catch((error) => {
         console.error(error);
@@ -92,7 +94,7 @@ const RegisterForm = () => {
             control={Button}
             primary
             size={"large"}
-            onClick={() => RegisterController()}
+            onClick={() => LoginController()}
             loading={isLoading}
           >
             Login
@@ -103,4 +105,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

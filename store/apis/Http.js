@@ -5,8 +5,8 @@ import { useEffect } from "react";
 const token = Cookies.get("token");
 
 process.env.NODE_ENV === "development"
-  ? (axios.defaults.baseURL = "http://127.0.0.1:8000/api")
-  : (axios.defaults.baseURL = "http://127.0.0.1:8000/api");
+  ? (axios.defaults.baseURL = "http://localhost:3000/api")
+  : (axios.defaults.baseURL = "http://localhost:3000/api");
 // ? (axios.defaults.baseURL = "https://winjoy.incubyter.com/public/api")
 // https://testing.winjoy.ae/public/api
 

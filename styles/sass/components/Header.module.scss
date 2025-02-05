@@ -17,9 +17,8 @@
   }
 }
 #header {
-  position: relative;
-  z-index: 2;
-  z-index: 300;
+  position: fixed;
+  z-index: 10;
   padding: 24px 0;
   @include size(100%, $header-height);
   // @include position(fixed, 46px 0 null null);
@@ -97,7 +96,7 @@
             display: block;
             padding: 8px 17px 7px;
             text-decoration: none;
-            color: $black;
+            color: $white;
             letter-spacing: 1.5px;
             @include border-radius(100px);
           }
@@ -158,8 +157,11 @@
     @include size(42px);
     background: none;
   }
-  #logo {
-    @include size(53px);
+  #logo a {
+    color: $white;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 500;
   }
   .socialIcons {
     .socialBtn {

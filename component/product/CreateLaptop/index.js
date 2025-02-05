@@ -114,6 +114,7 @@ const CreateLaptop = () => {
     fileData.append("condition", field_condition);
     fileData.append("price", field_price);
     fileData.append("location", field_location);
+    fileData.append("status", "active");
 
     console.log("fileData", fileData);
     Http.post(LAPTOP_ADD, fileData)
@@ -213,7 +214,7 @@ const CreateLaptop = () => {
                 <label className={styles.labelfirst}>Laptop Brand</label>
                 <Form.Field
                   control={Input}
-                  placeholder="type mobile brand"
+                  placeholder="select laptop brand"
                   value={fieldLaptopBrand}
                   onChange={(e) => setFieldLaptopBrand(e.target.value)}
                 />
